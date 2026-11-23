@@ -58,25 +58,28 @@ steel_ball/
 
 | 项目 | 版本/路径 |
 |------|-----------|
-| Python | `D:\个人的数据\PyCharm\电赛\.venv\Scripts\python.exe` |
+| Python | `.venv/Scripts/python.exe`（仓库根目录下的本地虚拟环境） |
 | ultralytics | 8.4.108 |
 | torch | 2.13.0 (CPU) |
 | opencv | 5.0.0 |
 
 ## 运行命令
 
-```bash
-# 切到项目目录
-cd /d D:\个人的数据\PyCharm\电赛\steel_ball
+以下路径均相对于仓库根目录。先在本地克隆的 `steel-ball-yolo/` 根目录打开终端；Windows 命令提示符（cmd）示例：
 
-# 实时检测 (默认)
-D:\个人的数据\PyCharm\电赛\.venv\Scripts\python.exe scripts/detect_yolo.py
+```bat
+REM 首次使用时，在仓库根目录创建虚拟环境并安装依赖
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install ultralytics opencv-python
 
-# 提高置信度阈值
-D:\个人的数据\PyCharm\电赛\.venv\Scripts\python.exe scripts/detect_yolo.py --conf 0.5
+REM 实时检测 (默认)
+.venv\Scripts\python.exe scripts/detect_yolo.py
 
-# 单张图片检测
-D:\个人的数据\PyCharm\电赛\.venv\Scripts\python.exe scripts/detect_yolo.py --image test.jpg
+REM 提高置信度阈值
+.venv\Scripts\python.exe scripts/detect_yolo.py --conf 0.5
+
+REM 单张图片检测（test.jpg 为自行提供、放在仓库根目录的测试图片）
+.venv\Scripts\python.exe scripts/detect_yolo.py --image test.jpg
 ```
 
 | 按键 | 功能 |
@@ -94,9 +97,9 @@ D:\个人的数据\PyCharm\电赛\.venv\Scripts\python.exe scripts/detect_yolo.p
 - `best.pt` — 在你的 130 张钢珠数据上微调后，专用于钢珠检测
 
 ### 标注工具
-labelImg 和 PyQt5 有兼容性问题，使用 `scripts/annotate.py` 替代：
-```bash
-D:\个人的数据\PyCharm\电赛\.venv\Scripts\python.exe scripts/annotate.py
+labelImg 和 PyQt5 有兼容性问题，使用 `scripts/annotate.py` 替代（同样在仓库根目录运行）：
+```bat
+.venv\Scripts\python.exe scripts/annotate.py
 ```
 操作：鼠标拖拽画框 | 空格下一张 | A上一张 | Delete清框 | Z撤销 | ESC保存退出
 
